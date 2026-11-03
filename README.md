@@ -25,9 +25,11 @@ python analysis/verify_replay.py
 python analysis/analyse_saved.py
 python analysis/check_joint_and_fees.py
 python analysis/screened_power.py
+python analysis/paired_ablation.py
+python analysis/poisoning_table.py
 ```
 
-These commands respectively check the implementation, simulate known-law sensitivity, reconcile the 12,160 replay cases and 41-point curves, reproduce paired uncertainty and chronological evaluation, reconcile the 5,376 joint-pilot outcomes with assumed fees, and rerun 450 aggregate attacks across the three control cohorts. Generated files are written under `results/generated/`.
+These commands respectively check the implementation, simulate known-law sensitivity, reconcile the 12,160 replay cases and 41-point curves, reproduce paired uncertainty and chronological evaluation, reconcile the 5,376 joint-pilot outcomes with assumed fees, and rerun 450 aggregate attacks across the three control cohorts. Generated files are written under `results/generated/`. The final two commands rerun the 2,432 paired mechanism outcomes and calculate the poisoned-versus-own-baseline mean-loss table.
 
 The replay and joint-pilot reconciliation commands consume saved CSV trajectories and scores. They do not rebuild the raw blockchain, regenerate all target draws or execute real transactions. The screened-control command performs fresh fitting and aggregate injections. Depending on the host, it can take several minutes.
 
@@ -41,6 +43,8 @@ The initial release check passed 118 tests, with one optional reference-checkout
 | Full saved replay reconciliation | `analysis/verify_replay.py` |
 | Paired median/P90 loss, detection intervals and rolling origins | `analysis/analyse_saved.py` |
 | Joint theft/control manipulation and fee accounting | `analysis/check_joint_and_fees.py` |
+| Paired output/address mechanisms on identical targets and BTC | `analysis/paired_ablation.py` |
+| Poisoned versus own no-poison mean loss and capital | `analysis/poisoning_table.py` |
 | Screened controls at identical absolute theft plans | `analysis/screened_power.py` |
 | Main aggregate evaluation and historical alarms | `code/experiments/run_all.py` |
 | Event-level replay generation | `code/experiments/replay.py` |
@@ -53,6 +57,6 @@ Detailed commands, expected outputs, input schemas and limitations are in `docs/
 
 ## Scope
 
-The supplied CSV files support inspection and reconstruction of the principal saved results, including all address replay score trajectories. Full raw-ledger extraction and fresh target-pool generation require the public source records and additional storage. Construction and exposure-audit code are included. A complete mechanism-isolating output/address factorial, screened event replay and a script-valid fee-constrained poisoning replay are not completed results of this codebase.
+The supplied CSV files support inspection and reconstruction of the principal saved results, including all address replay score trajectories. Full raw-ledger extraction and fresh target-pool generation require the public source records and additional storage. Construction and exposure-audit code are included. The paired sequential mechanism analysis reruns 76 starts with draw zero, value-tilted targeting and unit intensity on identical targets and weekly BTC. It crosses two representations, two control settings, two accumulators and four nested mechanism stages (2,432 outcomes). This is exploratory, order-dependent decomposition with each panel's training calibration, not all target laws/draws or a full binary factorial. Screened event replay and a script-valid fee-constrained poisoning replay remain uncompleted.
 
 Maintainer: `akoulianos`.

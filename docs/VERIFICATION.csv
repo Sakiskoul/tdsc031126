@@ -12,3 +12,9 @@ paired_bootstrap_replicates,3000,13-start blocks retaining all target draws
 matched_control_drift_reproduced,1,Matched 13-week diagnostic
 privacy_scan_findings,0,Published source and data selected for the commit
 source_comments_found,0,Published Python source
+paired_mechanism_outcomes_rerun,2432,"76 common starts; output/address, control/no-control, ARGUS/CTM and four sequential stages"
+paired_original_outcomes_matched,228,"All address/refitted ARGUS, no-control ARGUS and CTM cases match original alarms, delays and losses"
+paired_target_balances_matched,2007886,Raw output-segment and address target balances agree exactly in satoshis
+paired_representation_refit_anchors,56,28 anchors per panel reconstruct the reference excess and variance
+paired_public_csv_reproduction,1,Independent full run on distributed CSV components agrees with the isolated analysis
+poisoning_table_reproduced,1,Own no-poison pairing; actual capital and block-bootstrap mean-loss increments

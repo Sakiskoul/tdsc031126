@@ -1,0 +1,8 @@
+{
+  "seed": 2026110310,
+  "replicates": 10000,
+  "temporal_units": 8,
+  "block_length": 2,
+  "outcome": "Mean loss, pairing four theft scenarios within each start",
+  "scope": "Exploratory eight-start pilot on previously inspected history, one target draw"
+}
