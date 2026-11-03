@@ -1,0 +1,14 @@
+check,value,scope
+unit_tests_passed,118,Complete Python test suite
+optional_reference_tests_skipped,1,External NEWMA checkout is required for the skipped test
+converted_tables_exactly_equal,142,Original table values and types compared with CSV reconstruction
+replay_starts_checked,76,Saved trajectories and nominal outcomes
+replay_attack_cases_checked,12160,All laws and intensities across eight draws
+replay_thresholds_checked,41,All nine detector operating curves
+joint_detector_outcomes_reconciled,5376,CSV histories and shared theft plans
+screened_aggregate_attacks_rerun,450,Three controls with identical absolute plans
+known_law_replicates_per_setting,50000,Bernoulli and Poisson assumption sensitivity
+paired_bootstrap_replicates,3000,13-start blocks retaining all target draws
+matched_control_drift_reproduced,1,Matched 13-week diagnostic
+privacy_scan_findings,0,Published source and data selected for the commit
+source_comments_found,0,Published Python source

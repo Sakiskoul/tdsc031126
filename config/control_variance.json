@@ -1,0 +1,28 @@
+{
+  "created_local": "2026-11-02T14:55:21.5535742+02:00",
+  "scope": "Exploratory follow-up after grouped-control evaluation; no confirmatory holdout claim",
+  "panels": [
+    "full",
+    "addr"
+  ],
+  "feature": "13-week rolling sum of squared control value innovations divided by their Poisson shared-count-adjusted variance",
+  "innovation": "U=W-theta_hat*F; a=F/(L+20); V=theta_hat*(Q-2*a*F+a^2*L)",
+  "multiplier": "max(1,min(4,ratio/median_training_ratio))",
+  "hyperparameter_selection": "none; one bounded rule, 13-week window, evaluated once",
+  "training": [
+    "2014-01-06",
+    "2019-12-30"
+  ],
+  "evaluation": [
+    "2020-01-06",
+    "2026-09-28"
+  ],
+  "refits": "104-week lookback, 13-week gap, cadence 13, attack-independent",
+  "calibration": "same 400-replicate block8 bootstrap nominal ARL104 for ARGUS; CTM c104; both get same dynamic statistic",
+  "attacks": "tilted, m=0.25 and 1 original scalar sigma in BTC, mu1000, H52, stride4, 75 starts",
+  "success": "ARGUS dynamic no greater continuous historical and reset-window natural-alarm rates than CTM on same statistic, plus paired block-bootstrap95% CI strictly negative at m1",
+  "paired_ci": "2000 circular blocks of 13 starts; difference of median loss",
+  "risks": "Current control can still be manipulated; bounded variance inflation does not establish poisoning immunity or ARL under nonstationarity",
+  "paper_changes": "none",
+  "published_script_sha256": "3913ba705d20ee55ea0b438f72bfd64398e6362b358ea3c15dc6550642c971c6"
+}

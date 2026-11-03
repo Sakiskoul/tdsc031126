@@ -1,0 +1,84 @@
+{
+  "date": "2026-11-03",
+  "status": "Locked exploratory pilot; historical ledger has already been inspected. No fresh holdout or novelty certification.",
+  "panel": "Existing address-proxy panel; one address is an observational unit, not a proved unique cryptographic key.",
+  "start_source": "data/replay/starts.csv, pre-existing quarterly pools with one draw",
+  "start_ids": [
+    0,
+    3,
+    6,
+    9,
+    12,
+    15,
+    18,
+    21
+  ],
+  "starts": [
+    "2020-01-06",
+    "2020-10-05",
+    "2021-07-05",
+    "2022-04-04",
+    "2023-01-02",
+    "2023-10-02",
+    "2024-07-01",
+    "2025-03-31"
+  ],
+  "horizon_weeks": 52,
+  "control_inventory": "Bucket 0 only. Select up to 50000 addresses with positive control opening risk at onset; rank by total initial unspent above-dust balance, then stable anonymous ID. Selection may use only creation, unspent status, reveal status and balance at onset. No future-spend, future-survival, age-transition or future-linkage filters.",
+  "resource_budget": "Charge the entire above-dust initial unspent balance of every activated control address, including initially immature outputs. This covers outputs that can enter the eligible cohort later within 364 days. New post-onset outputs cannot reach 365-day dormancy within the horizon. C is mobilisable initial value, not a burn, fee bill or net economic cost.",
+  "control_budgets_btc": [
+    0,
+    10,
+    100,
+    1000
+  ],
+  "control_policies": [
+    "frontload",
+    "uniform cumulative resource allowance"
+  ],
+  "control_activation": "At each week opening, in fixed onset rank order, activate a not-yet-used address only if its key is still unrevealed, it has eligible control value, and its charged initial balance fits the available cumulative resource allowance. Spend all its then-eligible initial outputs. Advance its reveal time and rebuild all linked eligible intervals/events. Each address activated at most once. No future natural events used to choose an activation.",
+  "theft_laws": [
+    "tilted",
+    "mimic"
+  ],
+  "theft_intensities": [
+    0.5,
+    1.0
+  ],
+  "theft_budget": "Fixed weekly BTC pace m * median(reference count-control sigma in the 52 strictly preceding weeks), chosen at onset. Up to 1000 address proxies per week. Existing onset-only pool ranks and whole-address replay convention. Same theft trajectory for every control, detector, poison budget and refit mode.",
+  "controls": [
+    "count, kappa=20",
+    "min(address value,0.1 BTC), fit-scaled kappa and working variance as previous pilot"
+  ],
+  "calibration": "2014-01-06 to 2019-12-30; fitted-model endpoint exclusive, calibration endpoint inclusive as the paper. Seed 20261016, 400 training-only 8-week block bootstraps, target ARL 104. CTM uses same untrimmed z and c=104.",
+  "operating_points": "Calibrated point plus descriptive matched historical natural-window budgets 0.25 and 0.50 over all 76 four-week-spaced starts. Select smallest feasible kappa in pre-fixed geomspace(0.25,128,101) union {1}; publish actual realised FAR and unattainable points. Select and hash operating points before attack outcomes. This is retrospective operating-curve comparison, not prospective type-I certification.",
+  "refits": "Primary frozen run holds the model available at onset fixed for all 52 weeks. Separate stress test refits both theft and control contamination, 13-week anchors, 104-week lookback, 13-week gap. Use mode-specific honest natural curves and matched operating points. No fixed-hazard theorem claimed for contaminated refits.",
+  "pre_outcome_amendment": "Before computing natural operating points or attack outcomes, replaced the initially described exogenous honest calendar refits with an onset-frozen model for the primary theorem run. This removes the need for a trusted unpoisoned future refit and implements the agreed fixed-hazard first step. Same starts, candidates, weights, budgets and attack policies.",
+  "conditions": [
+    "honest",
+    "theft only",
+    "poisoning only",
+    "joint theft and poisoning"
+  ],
+  "outcomes": [
+    "loss through first alarm inclusive",
+    "alarm within horizon",
+    "delay with censoring stated",
+    "paired excess over poisoning-only alarms",
+    "charged capital and actually moved value",
+    "inventory exhaustion",
+    "linked risk/event changes",
+    "all natural operating curves"
+  ],
+  "paired_analysis": "Average paired differences within start across the four fixed theft scenarios; circular moving-block bootstrap over the eight chronological starts, block length 2, 10000 resamples, seed 20261103. Exploratory interval only: few dependent starts, one target draw, history previously inspected. Also publish every paired outcome.",
+  "decision": "Expand only if masking protection yields a useful loss/false-alarm tradeoff at shared attainable budgets, or a defensible new resource-constrained theorem. Do not infer detector superiority from predicted-flow shifts alone. No paper insertion at this stage.",
+  "known_scope_limits": [
+    "bucket-0 cooperating-holder counterfactual",
+    "address-proxy theft convention inherited from the existing replay",
+    "cross-address cryptographic linkage is not certified",
+    "new incoming transfers are held exogenous",
+    "fees and script signing are not measured",
+    "no quantum-attribution claim",
+    "no full end-to-end loss theorem without a legitimate-behaviour model"
+  ]
+}

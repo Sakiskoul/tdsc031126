@@ -1,0 +1,12 @@
+{
+  "name": "argus-alarm-oracle",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AlarmOracle gas measurement and tests (solc-js + ganache + ethers)",
+  "type": "commonjs",
+  "dependencies": {
+    "solc": "0.8.24",
+    "ethers": "^6.13.0",
+    "ganache": "^7.9.2"
+  }
+}

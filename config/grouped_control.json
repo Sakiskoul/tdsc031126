@@ -1,0 +1,56 @@
+{
+  "created_local": "2026-11-02T14:41:01.243629",
+  "status": "exploratory follow-up after prior evaluation inspection; not a new confirmatory holdout",
+  "fit_for_selection": [
+    "2014-01-06",
+    "2019-01-07"
+  ],
+  "select_only": [
+    "2019-01-07",
+    "2019-12-30"
+  ],
+  "groups": [
+    [
+      "vband"
+    ],
+    [
+      "era"
+    ],
+    [
+      "vband",
+      "era"
+    ]
+  ],
+  "prior_ratios": [
+    0.1,
+    1.0,
+    10.0
+  ],
+  "prior_group_events": "rho * max(1, median baseline control count in fitting weeks)",
+  "primary_selection": "min 90th percentile absolute 13-week value residual on selection weeks",
+  "go_gate": "at least 20% improvement in value diagnostic; count diagnostic at most 10% worse than scalar control",
+  "final_fit": [
+    "2014-01-06",
+    "2019-12-30"
+  ],
+  "evaluate": [
+    "2020-01-06",
+    "2026-09-28"
+  ],
+  "rolling_refit": 13,
+  "lookback": 104,
+  "gap": 13,
+  "variance": "shared-global control covariance retained, plus original global prior allowance",
+  "detectors": [
+    "ARGUS scalar",
+    "CTM scalar",
+    "ARGUS grouped",
+    "CTM grouped"
+  ],
+  "calibration": "same nominal ARL 104; bootstrap 400 replications, block 8; no test-selected thresholds",
+  "attacks": "identical aggregate BTC plans and old scalar reference sigma for all detectors; tilted law, intensities 0.25 and 1, mu1000, 52 weeks, stride4",
+  "paired_ci": "2000 circular blocks of 13 starts; primary difference of median loss, ARGUS grouped minus CTM grouped",
+  "success": "continuous natural alarms and reset-window alarm rate no greater than grouped CTM, and paired 95% CI upper limit below zero at m=1",
+  "secondary": "comparison against original CTM, mean loss difference, historical COVID week",
+  "paper_changes": "none until measurement reviewed; preserve author baseline 20261102_142558"
+}

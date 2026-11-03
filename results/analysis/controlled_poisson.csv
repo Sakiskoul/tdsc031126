@@ -1,0 +1,5 @@
+setting,replicates,horizon,threshold,run_length_bound_H_over_c,observed_window_alarm,mean_Y,within_stated_model
+poisson_oracle,50000,52,1000.0,0.052,0.0,-2.4752849111830245e-05,True
+control_batches_16,50000,52,1000.0,0.052,0.0,0.03904373522342866,False
+control_batches_100,50000,52,1000.0,0.052,0.52552,0.2625512649075723,False
+drift_50pct,50000,52,1000.0,0.052,0.99972,0.20006286743389484,False

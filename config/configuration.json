@@ -1,0 +1,157 @@
+{
+  "dataset": {
+    "source": "AWS public Bitcoin Parquet, construction queries included",
+    "cutoff_exclusive": "2026-10-01T00:00:00Z",
+    "evaluation_weeks": [
+      "2020-01-06",
+      "2026-09-28"
+    ],
+    "snapshot_identifier": "CSV-file SHA-256 values in MANIFEST.csv",
+    "missing": "A chain-tip block hash and immutable raw provider snapshot ID were not recovered."
+  },
+  "strata": {
+    "script_mapping": {
+      "typ1": "p2pk",
+      "typ6": "p2tr",
+      "typ2_or_3": "p2pkh",
+      "other": "p2sh"
+    },
+    "creation_era_years": [
+      "<=2010",
+      "2011--2012",
+      "2013--2016",
+      "2017--2020",
+      ">=2021"
+    ],
+    "minimum_satoshis": 100000,
+    "value_edges_satoshis": [
+      100000,
+      1000000,
+      10000000,
+      100000000,
+      1000000000,
+      10000000000
+    ],
+    "value_intervals": "Lower-inclusive, upper-exclusive. Last band >=100 BTC.",
+    "output_age_days": [
+      [
+        365,
+        730
+      ],
+      [
+        730,
+        1826
+      ],
+      [
+        1826,
+        3652
+      ],
+      [
+        3652,
+        40000
+      ]
+    ],
+    "output_age_semantics": "Intervals are intersected with eligible segments. Event endpoint and week tests follow the supplied SQL, including the shared upper endpoint convention.",
+    "address_age_band": "all, after aggregation of eligible segments",
+    "address_meta": "minimum era and any_value(fam) over per-population address segments, exactly as person_time_addr.py",
+    "week": "Monday UTC. Risk boundary deltas apply in the following week. Event requires opening week strictly before spend week.",
+    "exposure": "P2PK/P2TR at creation, otherwise address-history revelation. Screened variants truncate at recognised cross-format revelations.",
+    "partial_address_spend": "Marks the whole exposed dormant address value as moved."
+  },
+  "fitting": {
+    "initial_fit_start_inclusive": "2014-01-06",
+    "initial_fit_end_exclusive": "2019-12-30",
+    "calibration_endpoint_inclusive": "2019-12-30",
+    "iterations": 50,
+    "parent": [
+      "pop",
+      "fam",
+      "band"
+    ],
+    "shrink_pseudo_risk_weeks": 2000,
+    "hazard_missing_stratum": 0,
+    "refit_cadence_weeks": 13,
+    "refit_lookback_weeks": 104,
+    "refit_gap_weeks": 13,
+    "normalisation": "theta <- theta / mean(theta) after each alternating update",
+    "hazard_update": "(sum events + 2000 * parent hazard) / (sum theta*risk + 2000)",
+    "theta_update": "sum events / sum hazard*risk, NaN filled by 1",
+    "probability_cap": 0.25,
+    "phi": "max(1, median(S^2 / max(model_variance,1e-12)) / 0.4549)",
+    "regime_prior": "raw control event/prediction ratio, pandas EWM span=8, adjust=True, min_periods=1, shifted one week and initial fill=1",
+    "regime_prior_events": 20,
+    "regime_theta": "(control events + 20*prior)/(baseline control count + 20)",
+    "regime_variance": "max(theta,1e-9)/(baseline control count+20)"
+  },
+  "bootstrap": {
+    "replicates": 400,
+    "length_weeks": 416,
+    "block_weeks": 8,
+    "block_start": "rng.integers(0,len(training_z)-8), high exclusive, as actual implementation",
+    "Shewhart": "empirical quantile 1-0.5/104 of pooled simulations",
+    "CUSUM": "40 bisection steps for threshold, alarms reset state, mean alarm frequency target 1/104",
+    "ARL_scope": "Nominal training calibration by alarm frequency, not a proof of fitted future first-run length",
+    "reference_k": 0.5,
+    "winsorisation_cap": 4,
+    "seeds": {
+      "setup": 20261016,
+      "aggregate_uncertainty": 20261017,
+      "event_uncertainty": 20261018,
+      "NEWMA_projection": 20200427,
+      "CTM_random_ranks": 20210220,
+      "paired_analysis": 2026110307,
+      "controlled_validation": 2026110308
+    }
+  },
+  "ARGUS_e": {
+    "fractions": [
+      0.01,
+      0.02,
+      0.05,
+      0.1,
+      0.2,
+      0.4,
+      0.8
+    ],
+    "mixture_weights": "uniform",
+    "threshold": 104,
+    "drift": "training 90th percentile of absolute deviation of 13-week exposed/control count ratio from one",
+    "scope": "No bootstrap calibration. Conditional theorem requires true admissible rates and uniform drift, not just predictable fitting."
+  },
+  "replay": {
+    "starts": 76,
+    "stride_weeks": 4,
+    "target_draws": 8,
+    "horizon_weeks": 52,
+    "sample_size": 64000,
+    "intensities": [
+      0.25,
+      0.5,
+      1.0,
+      2.0,
+      4.0
+    ],
+    "spending_cap_address_proxies": 1000,
+    "laws": [
+      "tilted hazard*value",
+      "mimic hazard",
+      "uniform",
+      "whale value>=100 BTC"
+    ],
+    "weekly_pace": "m times reference weekly sigma, carried forward in absolute BTC",
+    "cancellation": "Natural events of a stolen address from theft week onward removed",
+    "risk_update": "Risk removal from following week, value and second moments recomputed",
+    "refits": "Original global 13-week calendar, contaminated 104-week lookback with 13-week gap",
+    "first_alarm": "Include theft in alarm week, or all 52 weeks if silent",
+    "curve_inequality": "eprocess, ctm, threshold use >=; all other saved scores use >",
+    "threshold_grid": "geomspace(0.25,8,41)",
+    "precision": "Nominal outcomes saved double, weekly score/theft arrays float32, independently reconciled curve loss discrepancy <=0.379273 BTC"
+  },
+  "analysis_protocol_files": [
+    "config/grouped_control.json",
+    "config/control_variance.json",
+    "config/control_pilot.json",
+    "docs/REPRODUCIBILITY.md"
+  ],
+  "status": "Local reproducibility bundle, not a publicly archived DOI release or confirmation of novelty."
+}

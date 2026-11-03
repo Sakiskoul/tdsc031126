@@ -1,0 +1,52 @@
+{
+  "date": "2026-11-03",
+  "status": "exploratory; historical data have already been inspected; not a confirmatory holdout",
+  "scope": "Isolated dynamic control-poisoning feasibility and honest-history diagnostic. No manuscript or canonical experimental code changes.",
+  "reference": "count control with kappa=20; original NullModel and robust CUSUM",
+  "candidate": "capped value control w(v)=min(v,0.1 BTC); cap fixed before this dynamic experiment",
+  "fit": [
+    "2014-01-06",
+    "2019-01-07"
+  ],
+  "honest_diagnostic": [
+    "2019-01-07",
+    "2026-09-28"
+  ],
+  "refits": "13-week global anchors from 2020-01-06, 104-week lookback, 13-week gap; 2019 uses the static fit",
+  "calibration": "own fit-only dispersion and original 400-replicate 8-week block bootstrap, target ARL 104, paired seed 20261103",
+  "attack_window": [
+    "2020-01-06",
+    "2021-01-04"
+  ],
+  "inventory": "Existing ledger segments from address bucket 0 only; exactly one eligible segment per address overlapping the attack horizon, control p2pkh/p2sh, segment starts before onset and ends at/after horizon; at most 50000 lowest-value candidates, stable hash tie-break",
+  "inventory_filter_amendment": "The initial across-all-history single-segment filter returned zero because natural age-band transitions create multiple segments for one output. Before examining any attack outcome, the filter was corrected to one segment overlapping the attack horizon. The first empty extraction is retained.",
+  "ownership": "Counterfactual cooperation/ownership of the selected existing controls, never actual possession of their keys. This restricted address sample is not a global optimal adversary or a proved unique-key sample.",
+  "budgets_btc": [
+    10,
+    100,
+    1000
+  ],
+  "schedules": [
+    "frontload at onset",
+    "uniform cumulative budget over 52 weeks"
+  ],
+  "policy": "Ascending value, then stable anonymous ID; spend an eligible whole output if remaining cumulative budget permits; each output at most once. Same plan for both controls.",
+  "causality": "Add the control event in the attack week and remove its risk from the following week. Stable single-segment inventory has no original event, age-band transition or eligible linked-address output during this horizon. General cancellation is checked separately on toy paths.",
+  "uncertainty": "Weighted variance is a working model, with fit-only batch inflation, not a confidence guarantee. Prior is recomputed causally. Compare frozen hazards and contaminated rolling refits separately.",
+  "outcomes": [
+    "realised expected-flow shift",
+    "weekly z change",
+    "honest historical alarms",
+    "inventory exhaustion",
+    "finite-stock and EMA identity checks"
+  ],
+  "not_claimed": [
+    "quantum theft replay",
+    "detection delay/loss improvement",
+    "optimal poisoning",
+    "full-ledger security guarantee",
+    "net attack expense",
+    "new clean holdout",
+    "novelty certification"
+  ]
+}

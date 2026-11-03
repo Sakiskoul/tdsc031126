@@ -1,0 +1,6 @@
+setting,replicates,theft_value,oracle_bound,false_alarm,miss,actual_null_variance,declared_independent_variance,within_stated_model
+oracle,50000,320,0.0391016016016016,0.0,0.0,999.0,999.0,True
+batch_4,50000,320,0.0391016016016016,0.00754,0.00408,3996.0,999.0,False
+batch_16,50000,320,0.0391016016016016,0.10326,0.09778,15984.0,999.0,False
+hazard_error,50000,320,0.0391016016016016,0.03094,0.0,999.0,999.0,False
+drift_20pct,50000,320,0.0391016016016016,0.8801,0.0,1198.56,999.0,False
